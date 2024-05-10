@@ -5,6 +5,7 @@ Emo est un robot compagnon avancé, conçu pour interagir avec les humains à tr
 
 ## Fonctionnalités
 - **Interactions tactiles** : Réagit au toucher grâce à des capteurs intégrés pour une interaction intuitive.
+- **Détection de vibration** : Intègre un capteur de vibration pour détecter les interactions physiques et les mouvements environnants.
 - **Sortie audio** : Utilise un amplificateur PAM8403 pour émettre des réponses sonores et parler avec l'utilisateur.
 - **Mouvements servomoteurs** : Effectue des gestes et expressions via plusieurs servomoteurs, permettant une gamme de mouvements fluides et expressifs.
 - **Affichage LCD expressif** : Montre des émotions ou des informations via un écran LCD, rendant Emo visuellement expressif et communicatif.
@@ -14,8 +15,9 @@ Emo est un robot compagnon avancé, conçu pour interagir avec les humains à tr
 - Raspberry Pi (Modèle 3B+ ou supérieur recommandé)
 - Écran LCD 2,4 pouces
 - Capteur tactile TTP223
+- Capteur de vibration SW-420
 - Amplificateur PAM8403 et haut-parleur
-- Servomoteurs et contrôleur de servomoteur
+- Servomoteurs et contrôleur de servomoteur PCA9685PW
 - Câbles de connexion et breadboard
 
 ## Installation
