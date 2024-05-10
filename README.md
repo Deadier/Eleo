@@ -19,7 +19,7 @@ Emo est un robot compagnon avancé, conçu pour interagir avec les humains à tr
 - Câbles de connexion et breadboard
 
 ## Installation
-### Configuration Matérielle
+### Configuration matérielle
 Suivez les schémas de câblage fournis dans le dossier `diagrams` pour connecter tous les composants électroniques au Raspberry Pi.
 
 ### Configuration logicielle
@@ -29,7 +29,7 @@ Suivez les schémas de câblage fournis dans le dossier `diagrams` pour connecte
 
  2. Installez les dépendances nécessaires :
 
->     pip install -r requirements.txt
+>     pip install adafruit-circuitpython-servokit RPi.GPIO spidev pillow
 
  3. Exécutez le script principal pour démarrer le robot :
 
