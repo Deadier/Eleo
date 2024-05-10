@@ -10,7 +10,7 @@ Emo est un robot compagnon avancé, conçu pour interagir avec les humains à tr
 - **Affichage LCD expressif** : Montre des émotions ou des informations via un écran LCD, rendant Emo visuellement expressif et communicatif.
 - **Reconnaissance vocale** : Capable de comprendre et de répondre aux commandes vocales, facilitant une interaction naturelle et mains libres.
 
-## Matériel Nécessaire
+## Matériel nécessaire
 - Raspberry Pi (Modèle 3B+ ou supérieur recommandé)
 - Écran LCD 2,4 pouces
 - Capteur tactile TTP223
@@ -25,15 +25,15 @@ Suivez les schémas de câblage fournis dans le dossier `diagrams` pour connecte
 ### Configuration logicielle
  1. Clonez ce dépôt sur votre Raspberry Pi :
 
-    git clone [https://github.com/Deadier/Elo.git](https://github.com/Deadier/Elo.git)
+>     git clone https://github.com/Deadier/Elo.git
 
  2. Installez les dépendances nécessaires :
 
-    pip install -r requirements.txt
+>     pip install -r requirements.txt
 
  3. Exécutez le script principal pour démarrer le robot :
 
-    python3 main.py
+>     python3 main.py
 
 ## Programmation des interactions
 Pour programmer Emo afin qu'il réponde aux commandes vocales et suive les mouvements, consultez le dossier `Code` qui contient des exemples de code pour intégrer la reconnaissance vocale et le suivi de mouvement.
