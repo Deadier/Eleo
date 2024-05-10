@@ -37,6 +37,37 @@ Suivez les schémas de câblage fournis dans le dossier `diagrams` pour connecte
 
 >     python3 main.py
 
+## Instructions de montage pour le robot Emo
+
+### Préparation et impression 3D
+
+-   **Modélisation**: Employez des techniques de modélisation solide et de modélisation libre pour concevoir les différentes parties du robot. Cette méthode facilite l'impression 3D et assure la compatibilité des pièces.
+-   **Impression des pièces**: Divisez le robot en plusieurs segments pour simplifier l'assemblage. Imprimez la base avec un taux de remplissage de 40 % pour garantir sa robustesse. Les autres composants doivent être imprimés avec un taux de remplissage de 20 % pour optimiser la résistance et l'économie de matériel.
+
+### Assemblage de la base
+
+-   **Installation électrique**: Commencez par installer le module micro USB dans la partie basse pour alimenter le robot. Placez à proximité le capteur de vibrations SW-420 pour qu'il puisse détecter efficacement les vibrations.
+-   **Fixation du couvercle**: Utilisez des vis M3 de 10 mm pour attacher solidement le couvercle à la base.
+
+### Configuration des capteurs et de l'affichage
+
+-   **Capteur tactile**: Intégrez un capteur tactile capacitatif dans la tête du robot. Sa petite taille permet une installation discrète et efficace.
+-   **Installation de l'écran**: Installez un écran IPS de 2 pouces de chez WaveShare pour afficher les expressions du robot. Fixez l'écran avec des supports noirs et sécurisez-le avec un peu de colle forte pour éviter tout mouvement lors de l'utilisation.
+
+### Montage des servomoteurs et installation audio
+
+-   **Installation des haut-parleurs**: Montez un haut-parleur de 18,5 watts sur le côté de la tête pour la diffusion du son. Amplifiez le signal audio provenant du Raspberry Pi avec un amplificateur PAM8403.
+-   **Servomoteurs**: Placez trois servomoteurs – deux SD9D pour les bras et un Engin ID pour la rotation du corps. Utilisez un contrôleur PC9685 pour une gestion aisée des servomoteurs.
+
+### Assemblage final et tests
+
+-   **Assemblage de la tête et du corps**: Fixez la tête au corps à l'aide de vis M3 de 15 mm. Assurez-vous que toutes les parties sont correctement alignées et sécurisées.
+-   **Tests de fonctionnalité**: Avant de finaliser l'assemblage, testez toutes les composantes électriques et mécaniques pour vous assurer qu'elles fonctionnent correctement. Vérifiez les connexions et les réponses du robot aux commandes.
+
+### Conseils d'utilisation et de maintenance
+
+-   **Interaction douce**: Emo est sensible aux interactions. Évitez les tapotements excessifs qui pourraient l'affecter émotionnellement. Privilégiez des caresses légères pour maintenir son bien-être.
+
 ## Programmation des interactions
 Pour programmer Emo afin qu'il réponde aux commandes vocales et suive les mouvements, consultez le dossier `Code` qui contient des exemples de code pour intégrer la reconnaissance vocale et le suivi de mouvement.
 
