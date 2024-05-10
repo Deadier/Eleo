@@ -18,41 +18,46 @@ from PIL import Image,ImageDraw,ImageFont
 
 from random import randint
 
+# Configuration des broches pour les capteurs tactiles et de vibration
 touch_pin = 17
 vibration_pin = 22
 
-
-
-# Set up pins
+# Initialisation des broches GPIO
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(touch_pin, GPIO.IN)
 GPIO.setup(vibration_pin, GPIO.IN)
 
-# Raspberry Pi pin configuration for LCD:
+# Configuration des broches du Raspberry Pi pour l'écran LCD
 RST = 27
 DC = 25
 BL = 18
 bus = 0 
 device = 0 
 
+# Initialisation du kit de servomoteurs avec 16 canaux
 kit=ServoKit(channels=16)
 servo=3
 
-#Declare Servos
-servoR = kit.servo[5]#Reference at 0
-servoL = kit.servo[11]#Reference at 180
-servoB = kit.servo[13]#Reference at 90
+# Déclaration des servomoteurs
+servoR = kit.servo[5]  # Référence à 0
+servoL = kit.servo[11] # Référence à 180
+servoB = kit.servo[13] # Référence à 90
 
+# Nombre de frames pour chaque animation d'émotion
 frame_count = {'blink':39, 'happy':60, 'sad':47,'dizzy':67,'excited':24,'neutral':61,'happy2':20,'angry':20,'happy3':26,'bootup3':124,'blink2':20}
 
+# Liste des émotions possibles
 emotion = ['angry','sad','excited']
 
+# États neutres par défaut
 normal = ['neutral','blink2']
 
+# File d'attente pour les processus et événement pour la synchronisation
 q = multiprocessing.Queue()
 event = multiprocessing.Event()
 
 def check_sensor():
+    # Vérifie les entrées des capteurs tactiles et de vibration
     previous_state = 1
     current_state = 0
     while True:
@@ -72,16 +77,19 @@ def check_sensor():
         time.sleep(0.05)
 
 def servoMed():
+    # Place les servomoteurs en position médiane
     servoR.angle = 90
     servoL.angle = 90
     servoB.angle = 90
 
 def servoDown():
+    # Abaisse les servomoteurs
     servoR.angle = 0
     servoL.angle = 180
     servoB.angle = 90
 
 def baserotate(reference,change,timedelay):
+    # Effectue une rotation de la base du servomoteur
     for i in range(reference,reference+change,1):
         servoB.angle = i
         time.sleep(timedelay)
@@ -91,19 +99,23 @@ def baserotate(reference,change,timedelay):
     for k in range(reference-change, reference,1):
         servoB.angle = k
         time.sleep(timedelay)
+
 def HandDownToUp(start,end,timedelay):
-	for i,j in zip(range(0+start,end,1),range((180-start),(180-end),-1)):
-		servoR.angle = i
-		servoL.angle = j
-		time.sleep(timedelay)
+    # Anime les mains du bas vers le haut
+    for i,j in zip(range(0+start,end,1),range((180-start),(180-end),-1)):
+        servoR.angle = i
+        servoL.angle = j
+        time.sleep(timedelay)
 
 def HandUpToDown(start,end,timedelay):
-	for i,j in zip(range(0+start,end,-1),range((180-start),(180-end),1)):
-		servoR.angle = i
-		servoL.angle = j
-		time.sleep(timedelay)
+    # Anime les mains du haut vers le bas
+    for i,j in zip(range(0+start,end,-1),range((180-start),(180-end),1)):
+        servoR.angle = i
+        servoL.angle = j
+        time.sleep(timedelay)
 
 def rotate(start,end,timedelay):
+    # Détermine la direction de rotation des mains et effectue l'animation
     if start<end:
         HandDownToUp(start,end,timedelay)
         HandUpToDown(end,start,timedelay)
@@ -112,6 +124,7 @@ def rotate(start,end,timedelay):
         HandDownToUp(start,end,timedelay)
 
 def happy():
+    # Anime le robot pour exprimer la joie
     servoMed()
     for n in range(5):
         for i in range(0, 120):
@@ -128,10 +141,14 @@ def happy():
                 servoL.angle = 210 - i #at 90
                 servoB.angle = 210 - i
             time.sleep(0.004)
+
 def angry():
+    # Anime le robot pour exprimer la colère
     for i in range(5):
         baserotate(90,randint(0,30),0.01)
+
 def angry2():
+    # Une autre animation pour exprimer la colère
     servoMed()
     for i in range(90):
         servoR.angle = 90-i
@@ -140,6 +157,7 @@ def angry2():
         time.sleep(0.02)
 
 def sad():
+    # Anime le robot pour exprimer la tristesse
     servoDown()
     for i in range(0,60):
         if i<=15:
@@ -151,6 +169,7 @@ def sad():
         time.sleep(0.09)
 
 def excited():
+    # Anime le robot pour exprimer l'excitation
     servoDown()
     for i in range(0,120):
         if i<=30:
@@ -162,11 +181,13 @@ def excited():
         time.sleep(0.01)
 
 def blink():
+    # Fait cligner les yeux du robot
     servoR.angle = 0
     servoL.angle = 180
     servoB.angle = 90
 
 def bootup():
+    # Initialise le robot et affiche une animation de démarrage
     show('bootup3',1)
     for i in range(1):
         p2 = multiprocessing.Process(target=show,args=('blink2',3))
@@ -180,10 +201,12 @@ def bootup():
         p3.join()
     
 def sound(emotion):
+    # Joue un son associé à une émotion
     for i in range(1):
 	    os.system("aplay /home/pi/Desktop/EmoBot/sound/"+emotion+".wav")
     
 def show(emotion,count):
+    # Affiche les images correspondant à une émotion sur l'écran LCD
     for i in range(count):
         try:
             disp = LCD_2inch.LCD_2inch()
@@ -200,6 +223,7 @@ def show(emotion,count):
             exit()
 
 if __name__ == '__main__':
+    # Processus principal, lance la surveillance des capteurs et réagit aux émotions détectées
     p1 = multiprocessing.Process(target=check_sensor, name='p1')
     p1.start()
     bootup()
@@ -231,6 +255,7 @@ if __name__ == '__main__':
                 p3.join()
                 p4.join()
         else:
+            # Gère les processus enfants et affiche un état neutre
             p = multiprocessing.active_children()
             for i in p:
                 if i.name not in ['p1','p5','p6']:
