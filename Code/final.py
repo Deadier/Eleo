@@ -44,7 +44,7 @@ servoL = kit.servo[11] # Référence à 180
 servoB = kit.servo[13] # Référence à 90
 
 # Nombre de frames pour chaque animation d'émotion
-frame_count = {'blink':39, 'happy':60, 'sad':47,'dizzy':67,'excited':24,'neutral':61,'happy2':20,'angry':20,'happy3':26,'bootup3':124,'blink2':20}
+frame_count = {'blink':39, 'happy':45, 'sad':47,'dizzy':67,'excited':24,'neutral':61,'happy2':20,'angry':20,'happy3':26,'bootup3':124,'blink2':20}
 
 # Liste des émotions possibles
 emotion = ['angry','sad','excited']
