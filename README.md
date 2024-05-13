@@ -25,37 +25,64 @@ Emo est un robot compagnon avancé, conçu pour interagir avec les humains à tr
 
 ## Installation
 ### Préparation du Raspberry Pi
-1. **Installation de l'OS** : Utilisez [Raspberry Pi Imager](https://www.raspberrypi.com/software/) pour installer le système d'exploitation Raspberry Pi OS sur une carte SD.
-2. **Activation du SSH** : Pour activer le SSH, insérez la carte SD dans votre ordinateur, ouvrez le volume "boot" et créez un fichier vide nommé `ssh` sans extension.
-3. **Connexion SSH** : Pour vous connecter à votre Raspberry Pi via SSH depuis un PC Windows, téléchargez et installez [PuTTY](https://www.putty.org/). Trouvez l'adresse IP de votre Raspberry Pi en consultant votre routeur ou en utilisant un outil de scan réseau comme Advanced IP Scanner.
-4. **Mise à jour du système** : Connectez-vous à votre Raspberry Pi via SSH et exécutez les commandes suivantes pour mettre à jour votre système :
 
->     sudo apt update && sudo apt full-upgrade
+#### Installation de l'OS avec Raspberry Pi Imager
+1. **Téléchargez et installez Raspberry Pi Imager** depuis [Raspberry Pi Software](https://www.raspberrypi.com/software/).
+2. **Ouvrez Raspberry Pi Imager** et choisissez l'OS recommandé (Raspberry Pi OS Full).
+3. **Sélectionnez la carte SD** sur laquelle l'OS sera installé.
+4. **Cliquez sur 'WRITE'** pour flasher la carte SD avec l'OS.
+
+#### Activation du SSH
+Pour activer le SSH sans accéder à l'interface graphique du Raspberry Pi:
+1. **Placez la carte SD** dans votre ordinateur.
+2. **Naviguez vers la partition 'boot'** de la carte SD.
+3. **Créez un fichier vide nommé 'ssh'** sans extension dans le répertoire racine.
+
+#### Connexion au Raspberry Pi via SSH avec PuTTY
+1. **Téléchargez et installez PuTTY** depuis [PuTTY Download Page](https://www.putty.org/).
+2. **Trouvez l'adresse IP du Raspberry Pi** :
+   - Connectez votre Raspberry Pi à votre réseau local via Ethernet ou Wi-Fi.
+   - Utilisez votre routeur ou un scanner de réseau pour trouver l'adresse IP attribuée à votre Raspberry Pi.
+3. **Ouvrez PuTTY** et entrez l'adresse IP du Raspberry Pi dans le champ 'Host Name (or IP address)'.
+4. **Cliquez sur 'Open'** pour établir une connexion SSH.
+   - Si demandé, acceptez la clé de l'hôte en cliquant sur 'Yes'.
+   - Connectez-vous en utilisant le nom d'utilisateur par défaut (`pi`) et le mot de passe par défaut (`raspberry`).
+
+#### Mise à jour du système
+Pour vous assurer que votre système d'exploitation est à jour:
+1. **Mettez à jour la liste des paquets** :
+
+>     sudo apt update
+
+2. **Effectuez une mise à niveau complète** :
+>     sudo apt full-upgrade
 
 5. **Redémarrage** : Redémarrez votre Raspberry Pi pour appliquer les mises à jour avec
 >     sudo reboot
 
 ### Configuration matérielle
-Suivez les schémas de câblage fournis dans le dossier `diagrams` pour connecter tous les composants électroniques au Raspberry Pi.
+Suivez les schémas de câblage fournis dans le dossier `Circuit` pour connecter tous les composants électroniques au Raspberry Pi.
 
 ### Configuration logicielle
  1. Clonez ce dépôt sur votre Raspberry Pi :
 
 >     git clone https://github.com/Deadier/Elo.git
 
- 2. Installez les dépendances nécessaires :
+2. Créez et activez un environnement virtuel pour isoler les installations :
+>     python3 -m venv <chemin vers votre projet>/venv
+>     source <chemin vers votre projet>/venv/bin/activate
+ 3. Installez les dépendances nécessaires :
 
 >     pip install adafruit-circuitpython-servokit RPi.GPIO spidev pillow
 
- 3. Exécutez le script principal pour démarrer le robot :
+ 4. Exécutez le script principal pour démarrer le robot :
 
->     python3 main.py
+>     python3 final.py
 
 ## Instructions de montage pour le robot Emo
 
 ### Préparation et impression 3D
 
--   **Modélisation**: Employez des techniques de modélisation solide et de modélisation libre pour concevoir les différentes parties du robot. Cette méthode facilite l'impression 3D et assure la compatibilité des pièces.
 -   **Impression des pièces**: Divisez le robot en plusieurs segments pour simplifier l'assemblage. Imprimez la base avec un taux de remplissage de 40 % pour garantir sa robustesse. Les autres composants doivent être imprimés avec un taux de remplissage de 20 % pour optimiser la résistance et l'économie de matériel.
 
 ### Assemblage de la base
