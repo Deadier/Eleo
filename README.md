@@ -68,14 +68,20 @@ Suivez les schémas de câblage fournis dans le dossier `Circuit` pour connecter
 
 >     git clone https://github.com/Deadier/Elo.git
 
-2. Créez et activez un environnement virtuel pour isoler les installations :
->     python3 -m venv <chemin vers votre projet>/venv
->     source <chemin vers votre projet>/venv/bin/activate
- 3. Installez les dépendances nécessaires :
+2. Créez un environnement virtuel pour isoler les installations :
+Utilisez la commande suivante pour créer un environnement virtuel dans le répertoire de votre projet. Remplacez `<path/to/your/project>` par le chemin réel où se trouve votre projet Emo.
+>     python3 -m venv <path/to/your/project>/venv
+ 3. Activez l'environnement virtuel :
+ Pour activer l'environnement virtuel, exécutez :
+>     source <path/to/your/project>/venv/bin/activate
+
+Après cette commande, votre invite de commande devrait afficher le nom de l'environnement virtuel (venv), indiquant que l'environnement est actif.
+
+ 4. Installez les dépendances nécessaires :
 
 >     pip install adafruit-circuitpython-servokit RPi.GPIO spidev pillow
 
- 4. Exécutez le script principal pour démarrer le robot :
+ 5. Exécutez le script principal pour démarrer le robot :
 
 >     python3 final.py
 
