@@ -66,7 +66,7 @@ Suivez les schémas de câblage fournis dans le dossier `Circuit` pour connecter
 ### Configuration logicielle
  1. Clonez ce dépôt sur votre Raspberry Pi :
 
->     git clone https://github.com/Deadier/Elo.git
+>     git clone https://github.com/Deadier/Eleo.git
 
 2. Créez un environnement virtuel pour isoler les installations :
 Utilisez la commande suivante pour créer un environnement virtuel dans le répertoire de votre projet. Remplacez `<path/to/your/project>` par le chemin réel où se trouve votre projet Emo.
