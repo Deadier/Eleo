@@ -79,7 +79,7 @@ Après cette commande, votre invite de commande devrait afficher le nom de l'env
 
  4. Installez les dépendances nécessaires :
 
->     pip install adafruit-circuitpython-servokit RPi.GPIO spidev pillow
+>     pip install adafruit-circuitpython-servokit RPi.GPIO spidev pillow numpy
 
  5. Exécutez le script principal pour démarrer le robot :
 
