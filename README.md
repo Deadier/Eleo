@@ -83,7 +83,7 @@ Après cette commande, votre invite de commande devrait afficher le nom de l'env
 
  5. Exécutez le script principal pour démarrer le robot :
 
->     python3 final.py
+>     python3 <path/to/your/project>/Code/final.py
 
 ## Instructions de montage pour le robot Emo
 
