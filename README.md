@@ -24,6 +24,17 @@ Emo est un robot compagnon avancé, conçu pour interagir avec les humains à tr
 - Câbles de connexion et breadboard
 
 ## Installation
+### Préparation du Raspberry Pi
+1. **Installation de l'OS** : Utilisez [Raspberry Pi Imager](https://www.raspberrypi.com/software/) pour installer le système d'exploitation Raspberry Pi OS sur une carte SD.
+2. **Activation du SSH** : Pour activer le SSH, insérez la carte SD dans votre ordinateur, ouvrez le volume "boot" et créez un fichier vide nommé `ssh` sans extension.
+3. **Connexion SSH** : Pour vous connecter à votre Raspberry Pi via SSH depuis un PC Windows, téléchargez et installez [PuTTY](https://www.putty.org/). Trouvez l'adresse IP de votre Raspberry Pi en consultant votre routeur ou en utilisant un outil de scan réseau comme Advanced IP Scanner.
+4. **Mise à jour du système** : Connectez-vous à votre Raspberry Pi via SSH et exécutez les commandes suivantes pour mettre à jour votre système :
+
+> sudo apt update && sudo apt full-upgrade
+
+5. **Redémarrage** : Redémarrez votre Raspberry Pi pour appliquer les mises à jour avec
+>  `sudo reboot`
+
 ### Configuration matérielle
 Suivez les schémas de câblage fournis dans le dossier `diagrams` pour connecter tous les composants électroniques au Raspberry Pi.
 
