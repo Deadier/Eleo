@@ -18,6 +18,9 @@ from PIL import Image,ImageDraw,ImageFont
 
 from random import randint
 
+# Détermination du répertoire de base pour les chemins relatifs
+base_dir = os.path.dirname(os.path.realpath(__file__))
+
 # Configuration des broches pour les capteurs tactiles et de vibration
 touch_pin = 17
 vibration_pin = 22
@@ -202,8 +205,10 @@ def bootup():
     
 def sound(emotion):
     # Joue un son associé à une émotion
+    sound_path = os.path.join(base_dir, "sound", f"{emotion}.wav")
     for i in range(1):
-	    os.system("aplay /home/pi/Desktop/EmoBot/sound/"+emotion+".wav")
+	    sound_path = os.path.join(base_dir, "sound", f"{emotion}.wav")
+	    os.system(f"aplay {sound_path}")
     
 def show(emotion,count):
     # Affiche les images correspondant à une émotion sur l'écran LCD
@@ -212,7 +217,8 @@ def show(emotion,count):
             disp = LCD_2inch.LCD_2inch()
             disp.Init()
             for i in range(frame_count[emotion]):
-                image = Image.open('/home/pi/Desktop/EmoBot/emotions/'+emotion+'/frame'+str(i)+'.png')	
+            	image_path = os.path.join(base_dir, "emotions", emotion, f"frame{str(i)}.png")
+            	image = Image.open(image_path)	
                 disp.ShowImage(image)
         except IOError as e:
             logging.info(e)    
