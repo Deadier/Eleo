@@ -12,12 +12,15 @@ Emo est un robot compagnon avancé, conçu pour interagir avec les humains à tr
 - **Reconnaissance vocale** : Capable de comprendre et de répondre aux commandes vocales, facilitant une interaction naturelle et mains libres.
 
 ## Matériel nécessaire
-- Raspberry Pi (Modèle 3B+ ou supérieur recommandé)
-- Écran LCD 2,4 pouces
-- Capteur tactile TTP223
-- Capteur de vibration SW-420
-- Amplificateur PAM8403 et haut-parleur
-- Servomoteurs et contrôleur de servomoteur PCA9685PW
+- 1 raspberry Pi (Modèle 3B+ ou supérieur recommandé)
+- 1 écran LCD 2,4 pouces
+- 1 capteur tactile TTP223
+- 1 capteur de vibration SW-420
+- 1 amplificateur PAM8403
+- 1 haut-parleur
+- 2 servomoteurs SG90 pour les bras
+- 1 servomoteur MG90S pour la rotation du corps
+- 1 contrôleur de servomoteur PCA9685PW
 - Câbles de connexion et breadboard
 
 ## Installation
