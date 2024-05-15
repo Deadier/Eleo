@@ -118,6 +118,20 @@ Après cette commande, votre invite de commande devrait afficher le nom de l'env
 ## Programmation des interactions
 Pour programmer Emo afin qu'il réponde aux commandes vocales et suive les mouvements, consultez le dossier `Code` qui contient des exemples de code pour intégrer la reconnaissance vocale et le suivi de mouvement.
 
+## Attributions des sons
+
+Les effets sonores utilisés pour les émotions d'Emo sont sous licence Creative Commons 0 (CC0) et proviennent de Freesound. Voici les attributions spécifiques pour chaque émotion :
+
+- **Angry**: Son par kanyonwyvern, disponible sur [Freesound](https://freesound.org/people/kanyonwyvern/sounds/713755/).
+- **Blink**: Son par newagesoup, disponible sur [Freesound](https://freesound.org/people/newagesoup/sounds/350359/).
+- **Dizzy**: Son par martian, disponible sur [Freesound](https://fresound.org/people/martian/sounds/403002/).
+- **Excited**: Son par dersuperanton, disponible sur [Freesound](https://freesound.org/people/dersuperanton/sounds/436168/).
+- **Happy**: Son par SergeQuadrado, disponible sur [Freesound](https://freesound.org/people/SergeQuadrado/sounds/636955/).
+- **Sad**: Son par SergeQuadrado, disponible sur [Freesound](https://freesound.org/people/SergeQuadrado/sounds/636956/).
+- **Sleep**: Son par bsmacbride, disponible sur [Freesound](https://freesound.org/people/bsmacbride/sounds/108517/).
+
+Ces sons ont été choisis pour enrichir l'expérience interactive avec Emo, en lui permettant de communiquer ses émotions de manière plus expressive.
+
 ## Fichiers STL
 Les modèles 3D pour l'impression des composants du robot sont disponibles dans le dossier `3D Design/STL`. Ces fichiers permettent de personnaliser et de construire votre propre version d'Emo.
 
