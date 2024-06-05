@@ -140,8 +140,7 @@ Pour voir Emo en action, regardez la [vidéo de présentation](https://www.youtu
 Ce projet est sous licence MIT - voir le fichier [LICENSE.md](LICENSE.md) pour les détails.
 
 ## Auteurs
-- **Coder's Cafe** - *Travail initial* - [[CodersCafeTech](https://github.com/CodersCafeTech)/
--   [Emo](https://github.com/CodersCafeTech/Emo)]
+- **Coder's Cafe** - *Travail initial* - [CodersCafeTech](https://github.com/CodersCafeTech/Emo)
 - Contributions et améliorations par [Deadier](https://github.com/Deadier)
 
 ## Remerciements
