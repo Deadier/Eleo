@@ -10,18 +10,53 @@ Emo est un robot compagnon avancé, conçu pour interagir avec les humains à tr
 - **Mouvements servomoteurs** : Effectue des gestes et expressions via plusieurs servomoteurs, permettant une gamme de mouvements fluides et expressifs.
 - **Affichage LCD expressif** : Montre des émotions ou des informations via un écran LCD, rendant Emo visuellement expressif et communicatif.
 - **Reconnaissance vocale** : Capable de comprendre et de répondre aux commandes vocales, facilitant une interaction naturelle et mains libres.
+- **Feedback vibratoire** : Le robot vibre lorsqu'il est touché à certains endroits, ajoutant une dimension sensorielle à l'interaction.
+- **Réactions émotionnelles** : Capable de pleurer, de se mettre en colère, de montrer de la tristesse, du bonheur, etc.
+- **Jeux interactifs** :
+  - **Left or Right Game** : Jeu de mémoire où il faut deviner l'objet caché sous un verre.
+  - **Dance to the Beat** : Jeu où Emo danse en fonction du rythme des applaudissements.
+  - **Shooting Game** : Jeu de tir où il faut toucher des cibles à l'écran.
+  - **Parrot Mode** : Emo répète ce que l'utilisateur dit.
+  - **Puppet Mode** : Permet de manipuler les expressions de Emo.
+- **Affichage et animations de haute qualité** : Affiche des animations de haute qualité et permet de régler le volume et la luminosité de l'écran.
+- **Batterie rechargeable** : Autonomie d'environ une heure et demie avec une interaction continue et temps de recharge rapide d'environ 30 minutes.
+- **Mises à jour logicielles** : Mise à jour du firmware via Windows avec l'ajout de nouvelles animations et fonctionnalités via des mises à jour.
 
 ## Matériel nécessaire
-- 1 raspberry Pi (Modèle 3B+ ou supérieur recommandé)
-- 1 écran LCD 2,4 pouces
-- 1 capteur tactile TTP223
-- 1 capteur de vibration SW-420
-- 1 amplificateur PAM8403
-- 1 haut-parleur
-- 2 servomoteurs SG90 pour les bras
-- 1 servomoteur MG90S pour la rotation du corps
-- 1 contrôleur de servomoteur PCA9685PW
-- Câbles de connexion et breadboard
+
+### Composants électroniques
+
+1.  **1 Raspberry Pi** (Modèle 3B+ ou supérieur recommandé)
+2.  **1 écran LCD 2,4 pouces** - Modèle WaveShare IPS recommandé
+3.  **3 capteurs tactile TTP223**
+   -   **Capteur de tête** : Détecte les touchers sur la tête.
+   - **Capteur de dos** : Réagit aux touchers sur le dos.
+   - **Capteur de ventre** : Sensible aux touchers sur le ventre.
+4.  **1 capteur de vibration SW-420**
+5. **Capteur de fond** : Détecte quand le robot est soulevé.
+6.  **1 amplificateur PAM8403**
+7.  **1 haut-parleur** - 18,5 watts recommandé
+8.  **Servomoteurs** :
+    -   2 servomoteurs SG90 pour les bras
+    -   1 servomoteur MG90S pour la rotation du corps
+9.  **1 contrôleur de servomoteur PCA9685PW**
+10.  **Câbles de connexion** et **breadboard**
+11.  **Module micro USB** pour l'alimentation
+
+### Matériel d'impression 3D
+
+1.  **Imprimante 3D** - Pour imprimer les pièces du robot
+2.  **Filament PLA** - Couleurs bleu et blanc recommandées
+3.  **Vis M3 (10 mm et 15 mm)**
+
+### Outils supplémentaires
+
+1.  **Colle forte** - Pour fixer certains composants
+2.  **Tournevis** - Pour les vis M3
+3.  **Multimètre** - Pour vérifier les connexions électriques
+4.  **Fer à souder** - Si nécessaire pour certaines connexions
+
+
 
 ## Installation
 ### Préparation du Raspberry Pi
