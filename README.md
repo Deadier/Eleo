@@ -151,7 +151,7 @@ Les effets sonores utilisés pour les émotions d'Emo sont sous licence Creative
 
 - **Angry**: Son par kanyonwyvern, disponible sur [Freesound](https://freesound.org/people/kanyonwyvern/sounds/713755/).
 - **Blink**: Son par newagesoup, disponible sur [Freesound](https://freesound.org/people/newagesoup/sounds/350359/).
-- **Dizzy**: Son par martian, disponible sur [Freesound](https://fresound.org/people/martian/sounds/403002/).
+- **Dizzy**: Son par martian, disponible sur [Freesound](https://freesound.org/people/martian/sounds/403002/).
 - **Excited**: Son par dersuperanton, disponible sur [Freesound](https://freesound.org/people/dersuperanton/sounds/436168/).
 - **Happy**: Son par SergeQuadrado, disponible sur [Freesound](https://freesound.org/people/SergeQuadrado/sounds/636955/).
 - **Sad**: Son par SergeQuadrado, disponible sur [Freesound](https://freesound.org/people/SergeQuadrado/sounds/636956/).
