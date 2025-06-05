@@ -1,20 +1,15 @@
 import time
-from board import SCL, SDA
-import busio
 from adafruit_servokit import ServoKit
 import multiprocessing
 
 import RPi.GPIO as GPIO
 import os
-
-import os
-import sys 
-import time
+import sys
 import logging
 import spidev as SPI
 sys.path.append("..")
 from lib import LCD_2inch
-from PIL import Image,ImageDraw,ImageFont
+from PIL import Image
 
 from random import randint
 
