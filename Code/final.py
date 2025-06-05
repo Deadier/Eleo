@@ -60,23 +60,31 @@ q = multiprocessing.Queue()
 event = multiprocessing.Event()
 
 def check_sensor():
-    # Vérifie les entrées des capteurs tactiles et de vibration
-    previous_state = 1
-    current_state = 0
+    """Surveille les capteurs tactiles et de vibration.
+
+    Le code d'origine ne mettait jamais ``previous_state`` à jour, ce qui
+    provoquait un déclenchement permanent tant que le capteur tactile restait
+    actionné. ``previous_state`` est maintenant mis à jour à chaque boucle afin
+    de ne réagir qu'à un changement d'état.
+    """
+
+    previous_state = GPIO.input(touch_pin)
     while True:
-        if (GPIO.input(touch_pin) == GPIO.HIGH):
-            if previous_state != current_state:
-                if (q.qsize()==0):
-                    event.set()
-                    q.put('happy')
-                current_state = 1
-            else:
-                current_state = 0
+        current_state = GPIO.input(touch_pin)
+
+        if current_state == GPIO.HIGH and previous_state != current_state:
+            if q.qsize() == 0:
+                event.set()
+                q.put('happy')
+
+        previous_state = current_state
+
         if GPIO.input(vibration_pin) == 1:
             print('vib')
-            if (q.qsize()==0):
+            if q.qsize() == 0:
                 event.set()
-                q.put(emotion[randint(0,2)])
+                q.put(emotion[randint(0, 2)])
+
         time.sleep(0.05)
 
 def servoMed():
@@ -207,8 +215,8 @@ def sound(emotion):
     # Joue un son associé à une émotion
     sound_path = os.path.join(base_dir, "sound", f"{emotion}.wav")
     for i in range(1):
-	    sound_path = os.path.join(base_dir, "sound", f"{emotion}.wav")
-	    os.system(f"aplay {sound_path}")
+        sound_path = os.path.join(base_dir, "sound", f"{emotion}.wav")
+        os.system(f"aplay {sound_path}")
     
 def show(emotion,count):
     # Affiche les images correspondant à une émotion sur l'écran LCD
@@ -217,8 +225,8 @@ def show(emotion,count):
             disp = LCD_2inch.LCD_2inch()
             disp.Init()
             for i in range(frame_count[emotion]):
-            	image_path = os.path.join(base_dir, "emotions", emotion, f"frame{str(i)}.png")
-            	image = Image.open(image_path)	
+                image_path = os.path.join(base_dir, "emotions", emotion, f"frame{str(i)}.png")
+                image = Image.open(image_path)  
                 disp.ShowImage(image)
         except IOError as e:
             logging.info(e)    
