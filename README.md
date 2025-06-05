@@ -105,11 +105,8 @@ Suivez les schémas de câblage fournis dans le dossier `Circuit` pour connecter
 
  3. Installez les dépendances nécessaires :
 
-Installation des paquets disponibles via apt
->     sudo apt install python3-numpy python3-pil python3-rpi.gpio python3-spidev
-
-Installation des paquets non disponibles via apt avec pip
->     pip install adafruit-circuitpython-servokit --break-system-packages
+Utilisez le fichier `requirements.txt` pour installer toutes les dépendances Python :
+>     pip install -r requirements.txt --break-system-packages
 
  4. Exécutez le script principal pour démarrer le robot :
 

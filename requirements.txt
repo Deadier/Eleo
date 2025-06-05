@@ -1,0 +1,6 @@
+RPi.GPIO
+spidev
+adafruit-circuitpython-servokit
+adafruit-blinka
+Pillow
+numpy
