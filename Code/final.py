@@ -241,9 +241,12 @@ if __name__ == '__main__':
     p1 = multiprocessing.Process(target=check_sensor, name='p1')
     p1.start()
     bootup()
+    p5 = None
+    p6 = None
     while True:
         if event.is_set():
-                p5.terminate()
+                if p5 is not None:
+                    p5.terminate()
                 event.clear()
                 emotion = q.get()
                 q.empty()
