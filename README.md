@@ -131,7 +131,7 @@ Utilisez le fichier `requirements.txt` pour installer toutes les dépendances Py
 ### Montage des servomoteurs et installation audio
 
 -   **Installation des haut-parleurs**: Montez un haut-parleur de 18,5 watts sur le côté de la tête pour la diffusion du son. Amplifiez le signal audio provenant du Raspberry Pi avec un amplificateur PAM8403.
--   **Servomoteurs**: Placez trois servomoteurs – deux SD9D pour les bras et un Engin ID pour la rotation du corps. Utilisez un contrôleur PC9685 pour une gestion aisée des servomoteurs.
+-   **Servomoteurs**: Placez trois servomoteurs – deux SD9D pour les bras et un Engin ID pour la rotation du corps. Utilisez un contrôleur PCA9685 pour une gestion aisée des servomoteurs.
 
 ### Assemblage final et tests
 
