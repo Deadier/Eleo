@@ -1,0 +1,29 @@
+# Python cache directories
+__pycache__/
+*.py[cod]
+
+# Bytecode and compiled files
+*.pyc
+*.pyo
+*.pyd
+*$py.class
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# Editor backups and miscellaneous
+*~
+*.swp
+.DS_Store
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Virtual environments
+env/
+venv/
+ENV/
+.venv/
+
