@@ -4,3 +4,16 @@ adafruit-circuitpython-servokit
 adafruit-blinka
 Pillow
 numpy
+
+# Nouvelles dépendances pour les fonctionnalités avancées
+SpeechRecognition
+pyttsx3
+pyaudio
+pygame
+opencv-python
+matplotlib
+scipy
+
+# Dépendances optionnelles pour les jeux
+flask  # Pour l'interface web future
+websockets  # Pour la communication temps réel

@@ -17,29 +17,33 @@ from random import randint
 base_dir = os.path.dirname(os.path.realpath(__file__))
 
 # Configuration des broches pour les capteurs tactiles et de vibration
-touch_pin = 17
-vibration_pin = 22
-
-# Initialisation des broches GPIO
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(touch_pin, GPIO.IN)
-GPIO.setup(vibration_pin, GPIO.IN)
+TOUCH_PIN = 17
+VIBRATION_PIN = 22
 
 # Configuration des broches du Raspberry Pi pour l'écran LCD
 RST = 27
 DC = 25
 BL = 18
-bus = 0 
-device = 0 
+BUS = 0 
+DEVICE = 0 
+
+# Configuration des servomoteurs
+SERVO_RIGHT_CHANNEL = 5   # Bras droit
+SERVO_LEFT_CHANNEL = 11   # Bras gauche  
+SERVO_BASE_CHANNEL = 13   # Base rotation
+
+# Initialisation des broches GPIO
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(TOUCH_PIN, GPIO.IN)
+GPIO.setup(VIBRATION_PIN, GPIO.IN) 
 
 # Initialisation du kit de servomoteurs avec 16 canaux
-kit=ServoKit(channels=16)
-servo=3
+kit = ServoKit(channels=16)
 
 # Déclaration des servomoteurs
-servoR = kit.servo[5]  # Référence à 0
-servoL = kit.servo[11] # Référence à 180
-servoB = kit.servo[13] # Référence à 90
+servoR = kit.servo[SERVO_RIGHT_CHANNEL]  # Référence à 0
+servoL = kit.servo[SERVO_LEFT_CHANNEL]   # Référence à 180
+servoB = kit.servo[SERVO_BASE_CHANNEL]   # Référence à 90
 
 # Nombre de frames pour chaque animation d'émotion
 frame_count = {'blink':39, 'happy':45, 'sad':47,'dizzy':67,'excited':24,'neutral':61,'happy2':20,'angry':20,'happy3':26,'bootup3':124,'blink2':20}
@@ -62,37 +66,46 @@ def check_sensor():
     actionné. ``previous_state`` est maintenant mis à jour à chaque boucle afin
     de ne réagir qu'à un changement d'état.
     """
+    try:
+        previous_state = GPIO.input(TOUCH_PIN)
+        while True:
+            current_state = GPIO.input(TOUCH_PIN)
 
-    previous_state = GPIO.input(touch_pin)
-    while True:
-        current_state = GPIO.input(touch_pin)
+            if current_state == GPIO.HIGH and previous_state != current_state:
+                if q.qsize() == 0:
+                    event.set()
+                    q.put('happy')
 
-        if current_state == GPIO.HIGH and previous_state != current_state:
-            if q.qsize() == 0:
-                event.set()
-                q.put('happy')
+            previous_state = current_state
 
-        previous_state = current_state
+            if GPIO.input(VIBRATION_PIN) == 1:
+                print('vib')
+                if q.qsize() == 0:
+                    event.set()
+                    q.put(emotion[randint(0, 2)])
 
-        if GPIO.input(vibration_pin) == 1:
-            print('vib')
-            if q.qsize() == 0:
-                event.set()
-                q.put(emotion[randint(0, 2)])
-
-        time.sleep(0.05)
+            time.sleep(0.05)
+    except Exception as e:
+        print(f"Erreur capteurs: {e}")
+        GPIO.cleanup()
 
 def servoMed():
     # Place les servomoteurs en position médiane
-    servoR.angle = 90
-    servoL.angle = 90
-    servoB.angle = 90
+    try:
+        servoR.angle = 90
+        servoL.angle = 90
+        servoB.angle = 90
+    except Exception as e:
+        print(f"Erreur servomoteurs: {e}")
 
 def servoDown():
     # Abaisse les servomoteurs
-    servoR.angle = 0
-    servoL.angle = 180
-    servoB.angle = 90
+    try:
+        servoR.angle = 0
+        servoL.angle = 180
+        servoB.angle = 90
+    except Exception as e:
+        print(f"Erreur servomoteurs: {e}")
 
 def baserotate(reference,change,timedelay):
     # Effectue une rotation de la base du servomoteur
@@ -215,21 +228,36 @@ def sound(emotion):
     
 def show(emotion,count):
     # Affiche les images correspondant à une émotion sur l'écran LCD
-    for i in range(count):
-        try:
+    disp = None
+    try:
+        for i in range(count):
             disp = LCD_2inch.LCD_2inch()
             disp.Init()
             for i in range(frame_count[emotion]):
                 image_path = os.path.join(base_dir, "emotions", emotion, f"frame{str(i)}.png")
-                image = Image.open(image_path)  
-                disp.ShowImage(image)
-        except IOError as e:
-            logging.info(e)    
-        except KeyboardInterrupt:
+                if os.path.exists(image_path):
+                    image = Image.open(image_path)  
+                    disp.ShowImage(image)
+                else:
+                    print(f"Image manquante: {image_path}")
+    except IOError as e:
+        print(f"Erreur I/O: {e}")
+        logging.info(e)    
+    except KeyboardInterrupt:
+        print("Interruption utilisateur")
+        if disp:
             disp.module_exit()
-            servoDown()
-            logging.info("quit:")
-            exit()
+        servoDown()
+        logging.info("quit:")
+        exit()
+    except Exception as e:
+        print(f"Erreur affichage: {e}")
+    finally:
+        if disp:
+            try:
+                disp.module_exit()
+            except:
+                pass
 
 if __name__ == '__main__':
     # Processus principal, lance la surveillance des capteurs et réagit aux émotions détectées
@@ -244,7 +272,12 @@ if __name__ == '__main__':
                     p5.terminate()
                 event.clear()
                 emotion = q.get()
-                q.empty()
+                # Vider correctement la queue
+                while not q.empty():
+                    try:
+                        q.get_nowait()
+                    except:
+                        break
                 print(emotion)
                 p2 = multiprocessing.Process(target=show,args=(emotion,4))
                 p3 = multiprocessing.Process(target=sound,args=(emotion,))
@@ -271,7 +304,13 @@ if __name__ == '__main__':
             p = multiprocessing.active_children()
             for i in p:
                 if i.name not in ['p1','p5','p6']:
-                    i.terminate()
+                    try:
+                        i.terminate()
+                        i.join(timeout=1)  # Attendre max 1 seconde
+                        if i.is_alive():
+                            i.kill()  # Forcer si nécessaire
+                    except:
+                        pass
             neutral = normal[0]
             p5 = multiprocessing.Process(target=show,args=(neutral,4),name='p5')
             p6 = multiprocessing.Process(target=baserotate,args=(90,60,0.02),name='p6')
